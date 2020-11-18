@@ -69,6 +69,9 @@ F19::Run https://facebook.com
 #s::Send, ^s
 
 ; Selecting
+#l::Send, ^l
+
+; Selecting
 #a::Send, ^a
 
 ; Copying
@@ -173,6 +176,20 @@ Lwin & Tab::AltTab
 ;^ä::SendInput {}} 
 
 
+ 
+SetStoreCapslockMode, off
+Capslock::
+	KeyWait, CapsLock
+	If (A_TimeSinceThisHotkey > 300)
+		SetTimer, mainp, -1
+	Else
+		Send ^{Space}
+Return
+
+mainp:
+	Send, {CapsLock}
+Return
+
 ; --------------------------------------------------------------
 ; Application specific
 ; --------------------------------------------------------------
@@ -187,4 +204,3 @@ Lwin & Tab::AltTab
 #!u::Send ^u
 
 #IfWinActive
-
